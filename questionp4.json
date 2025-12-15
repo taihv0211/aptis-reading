@@ -1,0 +1,156 @@
+[
+  {
+    "id": "cultural_exchange",
+    "title": "Cultural Exchange – Trao đổi văn hóa",
+    "mnemonic": "Rồi – Em – Phải – Ôm – Con – Bỏ – Fố",
+    "items": [
+      { "vn": "Rồi", "en": "Redefining", "meaning": "định nghĩa lại" },
+      { "vn": "Em", "en": "Encouraging", "meaning": "khuyến khích" },
+      { "vn": "Phải", "en": "Promoting", "meaning": "thúc đẩy, quảng bá" },
+      { "vn": "Ôm", "en": "Overemphasis", "meaning": "quá nhấn mạnh" },
+      { "vn": "Con", "en": "Concerns", "meaning": "mối quan ngại" },
+      { "vn": "Bỏ", "en": "Building", "meaning": "xây dựng" },
+      { "vn": "Fố", "en": "Focusing", "meaning": "tập trung" }
+    ]
+  },
+  {
+    "id": "digital_transformation",
+    "title": "Digital Transformation – Chuyển đổi số",
+    "mnemonic": "Rồi – Em – Phải – Ôm – Con – Bỏ – Fố",
+    "items": [
+      { "vn": "Rồi", "en": "Redefining", "meaning": "định nghĩa lại" },
+      { "vn": "Em", "en": "Enhancing", "meaning": "nâng cao" },
+      { "vn": "Phải", "en": "Promoting", "meaning": "thúc đẩy, quảng bá" },
+      { "vn": "Ôm", "en": "Over-reliance", "meaning": "quá phụ thuộc" },
+      { "vn": "Con", "en": "Concerns", "meaning": "mối lo ngại" },
+      { "vn": "Bỏ", "en": "Building", "meaning": "xây dựng" },
+      { "vn": "Fố", "en": "Focusing", "meaning": "tập trung" }
+    ]
+  },
+  {
+    "id": "wellness_trends",
+    "title": "Wellness Trends – Xu hướng sức khỏe",
+    "mnemonic": "Rồi – Phương – Em – Ôm – Con – Bỏ – Fố",
+    "items": [
+      { "vn": "Rồi", "en": "Redefining", "meaning": "định nghĩa lại" },
+      { "vn": "Phương", "en": "Promoting", "meaning": "thúc đẩy, quảng bá" },
+      { "vn": "Em", "en": "Encouraging", "meaning": "khuyến khích" },
+      { "vn": "Ôm", "en": "Overemphasis", "meaning": "quá nhấn mạnh" },
+      { "vn": "Con", "en": "Concerns", "meaning": "mối quan ngại" },
+      { "vn": "Bỏ", "en": "Building", "meaning": "xây dựng" },
+      { "vn": "Fố", "en": "Focusing", "meaning": "tập trung" }
+    ]
+  },
+  {
+    "id": "tech_forward",
+    "title": "Tech Forward – Tiến bộ công nghệ",
+    "mnemonic": "Rồi – Phương – Em – Ôm – Đống – Của – Sang",
+    "items": [
+      { "vn": "Rồi", "en": "Redefining", "meaning": "định nghĩa lại" },
+      { "vn": "Phương", "en": "Productivity", "meaning": "năng suất" },
+      { "vn": "Em", "en": "Education", "meaning": "giáo dục" },
+      { "vn": "Ôm", "en": "Over-reliance", "meaning": "quá phụ thuộc" },
+      { "vn": "Đống", "en": "Disparities", "meaning": "sự chênh lệch" },
+      { "vn": "Của", "en": "Communities", "meaning": "cộng đồng" },
+      { "vn": "Sang", "en": "Sustainable", "meaning": "bền vững" }
+    ]
+  },
+  {
+    "id": "digital_innovation",
+    "title": "Digital Innovation – Đổi mới kỹ thuật số",
+    "mnemonic": "Rồi – Em – Phải – Thức – Ôn – Bài – Pháp",
+    "items": [
+      { "vn": "Rồi", "en": "Redefining", "meaning": "định nghĩa lại" },
+      { "vn": "Em", "en": "Enhancing", "meaning": "nâng cao" },
+      { "vn": "Phải", "en": "Promoting", "meaning": "thúc đẩy, quảng bá" },
+      { "vn": "Thức", "en": "The risks", "meaning": "các rủi ro" },
+      { "vn": "Ôn", "en": "Ongoing", "meaning": "liên tục, đang diễn ra" },
+      { "vn": "Bài", "en": "Building", "meaning": "xây dựng" },
+      { "vn": "Pháp", "en": "Prioritizing", "meaning": "ưu tiên hóa" }
+    ]
+  },
+  {
+    "id": "mission_to_mars",
+    "title": "Mission to Mars – Sứ mệnh lên Sao Hỏa",
+    "mnemonic": "John – Ơi – Em – In – Đậm – Font – Nhé",
+    "items": [
+      { "vn": "John", "en": "Journey", "meaning": "hành trình" },
+      { "vn": "Ơi", "en": "Outcome", "meaning": "kết quả" },
+      { "vn": "Em", "en": "Experiment", "meaning": "thí nghiệm" },
+      { "vn": "In", "en": "Imitating", "meaning": "mô phỏng, bắt chước" },
+      { "vn": "Đậm", "en": "Difficulties", "meaning": "khó khăn" },
+      { "vn": "Font", "en": "Future", "meaning": "tương lai" },
+      { "vn": "Nhé", "en": "New world", "meaning": "thế giới mới" }
+    ]
+  },
+  {
+    "id": "mountains_human_connections",
+    "title": "Mountains and Human Connections – Núi non & kết nối con người",
+    "mnemonic": "Phương – Anh – Phung – Phí – Rổ – Sức – Rồi",
+    "items": [
+      { "vn": "Phương", "en": "Perception", "meaning": "nhận thức" },
+      { "vn": "Anh", "en": "Achievement", "meaning": "thành tựu" },
+      { "vn": "Phung", "en": "Publicity", "meaning": "sự công khai" },
+      { "vn": "Phí", "en": "Priority", "meaning": "ưu tiên" },
+      { "vn": "Rổ", "en": "Revelation", "meaning": "sự khám phá" },
+      { "vn": "Sức", "en": "Sustainability", "meaning": "bền vững" },
+      { "vn": "Rồi", "en": "Relationship", "meaning": "mối quan hệ" }
+    ]
+  },
+  {
+    "id": "four_day_workweek",
+    "title": "The Four-Day Workweek – Tuần làm việc 4 ngày",
+    "mnemonic": "Wang – Bỏ – Fí – Công – Học – Ư – Anh",
+    "items": [
+      { "vn": "Wang", "en": "Way of life", "meaning": "lối sống" },
+      { "vn": "Bỏ", "en": "Benefits", "meaning": "lợi ích" },
+      { "vn": "Fí", "en": "Financial", "meaning": "tài chính" },
+      { "vn": "Công", "en": "Challenges", "meaning": "thách thức" },
+      { "vn": "Học", "en": "Habits", "meaning": "thói quen" },
+      { "vn": "Ư", "en": "Unfair", "meaning": "bất công" },
+      { "vn": "Anh", "en": "Alternative", "meaning": "giải pháp thay thế" }
+    ]
+  },
+  {
+    "id": "women_in_mathematics",
+    "title": "Women in Mathematics – Phụ nữ trong Toán học",
+    "mnemonic": "Gã – Phò – Mã – Cần – Lắm – Bia – Uống",
+    "items": [
+      { "vn": "Gã", "en": "Gender", "meaning": "giới tính" },
+      { "vn": "Phò", "en": "Pioneer", "meaning": "người tiên phong" },
+      { "vn": "Mã", "en": "Men", "meaning": "nam giới" },
+      { "vn": "Cần", "en": "Career", "meaning": "sự nghiệp" },
+      { "vn": "Lắm", "en": "Labels", "meaning": "định kiến" },
+      { "vn": "Bia", "en": "Balance", "meaning": "cân bằng" },
+      { "vn": "Uống", "en": "Uniformity", "meaning": "sự đồng nhất" }
+    ]
+  },
+  {
+    "id": "early_australians",
+    "title": "The Early Australians",
+    "mnemonic": "Hỏi – Nhiều – Thế – John – Em – Không – Ế",
+    "items": [
+      { "vn": "Hỏi", "en": "History", "meaning": "lịch sử" },
+      { "vn": "Nhiều", "en": "Natural", "meaning": "tự nhiên" },
+      { "vn": "Thế", "en": "Technology", "meaning": "công nghệ" },
+      { "vn": "John", "en": "Journey", "meaning": "hành trình" },
+      { "vn": "Em", "en": "Evidence", "meaning": "bằng chứng" },
+      { "vn": "Không", "en": "Knowledge", "meaning": "kiến thức" },
+      { "vn": "Ế", "en": "Explorer", "meaning": "nhà thám hiểm" }
+    ]
+  },
+  {
+    "id": "frozen_antarctica",
+    "title": "Frozen Antarctica",
+    "mnemonic": "Wang – Sợ – Em – Ghen – Rồi – Làm – Căng",
+    "items": [
+      { "vn": "Wang", "en": "Who", "meaning": "ai" },
+      { "vn": "Sợ", "en": "Step", "meaning": "bước chân" },
+      { "vn": "Em", "en": "Earth", "meaning": "Trái Đất" },
+      { "vn": "Ghen", "en": "Geography", "meaning": "địa lý" },
+      { "vn": "Rồi", "en": "Race", "meaning": "cuộc đua / hành trình" },
+      { "vn": "Làm", "en": "Less", "meaning": "ít hơn" },
+      { "vn": "Căng", "en": "Cold", "meaning": "lạnh" }
+    ]
+  }
+]

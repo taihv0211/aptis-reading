@@ -1,0 +1,158 @@
+[
+  {
+    "id": 1,
+    "question": "Family Sports Day – Ngày hội thể thao gia đình",
+    "options": ["morning", "ran", "after", "included", "hungry"],
+    "answer": ["morning", "ran", "after", "included", "hungry"]
+  },
+  {
+    "id": 2,
+    "question": "A Sports Event – Sự kiện thể thao",
+    "options": ["started on", "men and women", "after received", "activities", "hungry"],
+    "answer": ["started on", "men and women", "after received", "activities", "hungry"]
+  },
+  {
+    "id": 3,
+    "question": "Startup Showcase – Triển lãm khởi nghiệp",
+    "options": ["held on", "participated", "activities", "after the pitches", "networked"],
+    "answer": ["held on", "participated", "activities", "after the pitches", "networked"]
+  },
+  {
+    "id": 4,
+    "question": "Cultural Festival – Lễ hội văn hóa",
+    "options": ["held", "participated", "activities", "after main event", "enjoy"],
+    "answer": ["held", "participated", "activities", "after main event", "enjoy"]
+  },
+  {
+    "id": 5,
+    "question": "Tech Fair – Hội chợ công nghệ",
+    "options": ["held on", "exhibitors", "activities", "after the demo", "visitors"],
+    "answer": ["held on", "exhibitors", "activities", "after the demo", "visitors"]
+  },
+  {
+    "id": 6,
+    "question": "Company Wellness Day – Ngày sức khỏe doanh nghiệp",
+    "options": ["held on", "participated", "activities", "after the workshop", "employees"],
+    "answer": ["held on", "participated", "activities", "after the workshop", "employees"]
+  },
+  {
+    "id": 7,
+    "question": "Wellness Fair – Hội chợ sức khỏe",
+    "options": ["took place", "participants", "activities", "after the workshops", "families"],
+    "answer": ["took place", "participants", "activities", "after the workshops", "families"]
+  },
+  {
+    "id": 8,
+    "question": "Tech Innovation Expo – Triển lãm đổi mới công nghệ",
+    "options": ["held on", "participants", "activities", "after the presentations", "attendees"],
+    "answer": ["held on", "participants", "activities", "after the presentations", "attendees"]
+  },
+  {
+    "id": 9,
+    "question": "Healthy Eating – Ăn uống lành mạnh",
+    "options": ["past", "limit", "modern diets", "nutritionists", "apps"],
+    "answer": ["past", "limit", "modern diets", "nutritionists", "apps"]
+  },
+  {
+    "id": 10,
+    "question": "Workplace Evolution – Sự phát triển nơi làm việc",
+    "options": ["past", "limited tech", "modern", "managers", "companies"],
+    "answer": ["past", "limited tech", "modern", "managers", "companies"]
+  },
+  {
+    "id": 11,
+    "question": "Social Media – Mạng xã hội",
+    "options": ["past", "early platforms", "evolved", "modern platforms", "influencers"],
+    "answer": ["past", "early platforms", "evolved", "modern platforms", "influencers"]
+  },
+  {
+    "id": 12,
+    "question": "Artificial Intelligence (AI) – Trí tuệ nhân tạo",
+    "options": ["AI", "early AI system", "high computational", "engineers", "modern AI"],
+    "answer": ["AI", "early AI system", "high computational", "engineers", "modern AI"]
+  },
+  {
+    "id": 13,
+    "question": "Tourism – Du lịch",
+    "options": ["earlier times", "limited tech", "modern tourism", "online platforms", "local guides"],
+    "answer": ["earlier times", "limited tech", "modern tourism", "online platforms", "local guides"]
+  },
+  {
+    "id": 14,
+    "question": "The History of Transportation – Lịch sử giao thông vận tải",
+    "options": ["past", "trains and cars", "planes", "flying", "easier"],
+    "answer": ["past", "trains and cars", "planes", "flying", "easier"]
+  },
+  {
+    "id": 15,
+    "question": "Internet of Things (IoT) – Internet vạn vật",
+    "options": ["past", "limited", "engineers", "IoT", "modern IoT system"],
+    "answer": ["past", "limited", "engineers", "IoT", "modern IoT system"]
+  },
+  {
+    "id": 16,
+    "question": "The Famous Singer – Ca sĩ nổi tiếng",
+    "options": ["follow", "age", "performance", "clothes", "attract"],
+    "answer": ["follow", "age", "performance", "clothes", "attract"]
+  },
+  {
+    "id": 17,
+    "question": "Writing about a Place – Viết về một địa điểm",
+    "options": ["research", "people and history", "compare", "writing", "cannot visit"],
+    "answer": ["research", "people and history", "compare", "writing", "cannot visit"]
+  },
+  {
+    "id": 18,
+    "question": "A New Coffee Shop – Quán cà phê mới",
+    "options": ["full", "menu", "disappointed", "sandwich", "return"],
+    "answer": ["full", "menu", "disappointed", "sandwich", "return"]
+  },
+  {
+    "id": 19,
+    "question": "A University Open Day – Ngày hội tuyển sinh đại học",
+    "options": ["call and email", "card", "lectures", "question-and-answer", "departments"],
+    "answer": ["call and email", "card", "lectures", "question-and-answer", "departments"]
+  },
+  {
+    "id": 20,
+    "question": "University Welcome Day – Ngày chào đón sinh viên mới",
+    "options": ["bài thuyết trình bắt đầu", "khoa + giảng viên", "dẫn đi tham quan", "ăn trưa", "báo giờ"],
+    "answer": ["bài thuyết trình bắt đầu", "khoa + giảng viên", "dẫn đi tham quan", "ăn trưa", "báo giờ"]
+  },
+  {
+    "id": 21,
+    "question": "Presentation – Bài thuyết trình",
+    "options": ["group", "prepare", "present", "explain", "questions-answer"],
+    "answer": ["group", "prepare", "present", "explain", "questions-answer"]
+  },
+  {
+    "id": 22,
+    "question": "Mae’s Journey – Hành trình của Mae",
+    "options": ["her parents", "course", "members", "group", "plants and animals"],
+    "answer": ["her parents", "course", "members", "group", "plants and animals"]
+  },
+  {
+    "id": 23,
+    "question": "End of Term Project – Dự án cuối kỳ",
+    "options": ["end of term project", "include", "presentation", "key point", "question"],
+    "answer": ["end of term project", "include", "presentation", "key point", "question"]
+  },
+  {
+    "id": 24,
+    "question": "A Day at the Office – Một ngày làm việc ở văn phòng",
+    "options": ["flexible", "desk", "calendar", "lunch", "after work"],
+    "answer": ["flexible", "desk", "calendar", "lunch", "after work"]
+  },
+  {
+    "id": 25,
+    "question": "Music Festivals – Lễ hội âm nhạc",
+    "options": ["carefully", "free", "early", "busy", "performance"],
+    "answer": ["carefully", "free", "early", "busy", "performance"]
+  },
+  {
+    "id": 26,
+    "question": "Making Films – Làm phim",
+    "options": ["different", "black and white", "limited budget", "money", "earn"],
+    "answer": ["different", "black and white", "limited budget", "money", "earn"]
+  }
+]

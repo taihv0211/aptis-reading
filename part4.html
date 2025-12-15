@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Part 4 – Học thuộc theo chủ đề</title>
+  <style>
+    :root{
+      --bg1:#667eea; --bg2:#764ba2; --card:#fff; --ink:#111827; --muted:#6b7280;
+      --primary:#667eea; --primaryHover:#5563d6; --line:#e5e7eb;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; min-height:100vh; font-family:"Segoe UI",Tahoma,sans-serif;
+      color:var(--ink); background:linear-gradient(135deg,var(--bg1),var(--bg2)); padding:18px;
+    }
+    .container{
+      max-width:800px; margin:0 auto; background:var(--card); border-radius:16px;
+      box-shadow:0 20px 40px rgba(0,0,0,0.18); padding:18px;
+    }
+    h1{ font-size:20px; margin:0 0 6px; }
+    .sub{ margin:0; color:var(--muted); font-size:13px; }
+    .center{ text-align:center; }
+    .btn{ border:none; border-radius:10px; padding:12px 16px; cursor:pointer; font-weight:600;
+      transition:transform .15s ease, background .15s ease; }
+    .btn-primary{ background:var(--primary); color:#fff; }
+    .btn-primary:hover{ background:var(--primaryHover); transform:translateY(-1px); }
+    .btn-dark{ background:#111827; color:#fff; }
+    .btn-dark:hover{ background:#0b1220; transform:translateY(-1px); }
+    .btn-ghost{ background:#eef0ff; color:#2d37a3; border:1px solid #dfe3ff; }
+
+    .index-page{ padding:30px 20px; }
+    .mode-buttons{ display:flex; gap:14px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+
+    .topbar{ display:flex; justify-content:space-between; align-items:center; gap:12px;
+      background:#f6f7ff; border:1px solid var(--line); border-radius:12px; padding:12px; flex-wrap:wrap; }
+
+    .card{ margin-top:16px; border:1px solid var(--line); border-radius:14px; padding:16px; }
+    .card-header{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .topic{ font-weight:800; font-size:16px; margin:0; }
+    .mnemonic{ margin:10px 0; padding:12px; border-radius:12px; background:#f9f9ff;
+      border:1px dashed #c7c9ff; font-weight:700; font-size:15px; text-align:center; }
+    .details{ display:none; }
+    table{ width:100%; border-collapse:collapse; margin-top:10px; font-size:14px;
+      border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    th,td{ padding:8px 10px; border-bottom:1px solid var(--line); }
+    th{ background:#fafafa; text-align:left; font-size:13px; }
+    tr:last-child td{ border-bottom:none; }
+
+    .nav{ display:flex; justify-content:space-between; gap:10px; margin-top:16px; }
+    .progress{ text-align:center; font-size:13px; color:var(--muted); margin-top:6px; }
+
+    .hidden{ display:none; }
+    .error{ margin-top:14px; padding:12px; border-radius:12px; background:#fff1f2;
+      border:1px solid #fecdd3; color:#9f1239; font-size:14px; white-space:pre-line; }
+
+    @media (max-width:640px){
+      body{ padding:12px; }
+      .container{ padding:14px; }
+      .nav button{ width:100%; }
+      .nav{ flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- MODE SELECT PAGE -->
+  <div id="modePage" class="index-page center">
+    <h1>Part 4 – Học thuộc theo chủ đề</h1>
+    <p class="sub">Chọn chế độ học trước khi bắt đầu</p>
+    <div class="mode-buttons">
+      <button class="btn btn-primary" onclick="start('order')">➡️ Lần lượt</button>
+      <button class="btn btn-ghost" onclick="start('random')">🔀 Random</button>
+    </div>
+    <div style="margin-top:20px">
+      <button class="btn btn-dark" onclick="location.href='index.html'">⬅ Về index</button>
+    </div>
+  </div>
+
+  <!-- LEARNING PAGE -->
+  <div id="learnPage" class="hidden">
+    <div class="topbar">
+      <div>
+        <h1>Part 4 – Học thuộc</h1>
+        <p class="sub" id="modeText">Mode:</p>
+      </div>
+      <button class="btn btn-dark" onclick="backToMode()">⬅ Chọn lại mode</button>
+    </div>
+
+    <div id="error" class="error" style="display:none"></div>
+    <div id="card" class="card"></div>
+
+    <div class="nav">
+      <button id="btnPrev" class="btn btn-ghost" onclick="prevTopic()">⬅ Trước</button>
+      <button id="btnNext" class="btn btn-primary" onclick="nextTopic()">➡ Next</button>
+    </div>
+    <div id="progress" class="progress"></div>
+  </div>
+
+</div>
+
+<script>
+let topics = [];
+let viewList = [];
+let index = 0;
+let detailsOpen = false;
+
+async function loadData(){
+  try{
+    const res = await fetch('questionp4.json', { cache:'no-store' });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if(!Array.isArray(data) || data.length === 0) throw new Error('Dữ liệu không hợp lệ');
+    topics = data;
+  }catch(e){
+    const err = document.getElementById('error');
+    err.style.display = 'block';
+    err.textContent = 'Không load được questionp4.json.\nHãy chạy bằng server local.\n' + e.message;
+  }
+}
+
+function start(mode){
+  viewList = [...topics];
+  if(mode === 'random') shuffle(viewList);
+  index = 0;
+  detailsOpen = false;
+  document.getElementById('modePage').classList.add('hidden');
+  document.getElementById('learnPage').classList.remove('hidden');
+  document.getElementById('modeText').textContent = 'Mode: ' + (mode === 'random' ? 'Random' : 'Lần lượt');
+  render();
+}
+
+function backToMode(){
+  document.getElementById('learnPage').classList.add('hidden');
+  document.getElementById('modePage').classList.remove('hidden');
+}
+
+function render(){
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const card = document.getElementById('card');
+  const prog = document.getElementById('progress');
+  const t = viewList[index];
+  if(!t) return;
+  card.innerHTML = `
+    <div class="card-header">
+      <p class="topic">${t.title}</p>
+      <button class="btn btn-ghost" onclick="toggleDetails()">${detailsOpen ? 'Ẩn details' : 'Details'}</button>
+    </div>
+    <div class="mnemonic">${t.mnemonic}</div>
+    <div class="details" style="display:${detailsOpen ? 'block' : 'none'}">
+      <table>
+        <thead><tr><th>Từ nhớ</th><th>English</th><th>Nghĩa</th></tr></thead>
+        <tbody>
+          ${t.items.map(i => `<tr><td><b>${i.vn}</b></td><td>${i.en}</td><td>${i.meaning}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+    // Toggle prev/next visibility
+  if (btnPrev) btnPrev.style.display = index === 0 ? 'none' : 'inline-block';
+  if (btnNext) btnNext.style.display = index === viewList.length - 1 ? 'none' : 'inline-block';
+
+  prog.textContent = `Chủ đề ${index + 1} / ${viewList.length}`;
+}
+
+function toggleDetails(){ detailsOpen = !detailsOpen; render(); }
+
+function nextTopic(){ if(index < viewList.length - 1){ index++; detailsOpen = false; render(); } }
+function prevTopic(){ if(index > 0){ index--; detailsOpen = false; render(); } }
+
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } }
+
+loadData();
+</script>
+</body>
+</html>
