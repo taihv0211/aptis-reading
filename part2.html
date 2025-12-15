@@ -5,604 +5,211 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Part 2 – Luyện tập sắp xếp thứ tự</title>
   <style>
-    :root{
-      --bg1:#667eea;
-      --bg2:#764ba2;
-      --primary:#667eea;
-      --primaryHover:#5563d6;
-      --ok:#38b2ac;
-      --bad:#e53e3e;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --ink:#111827;
-    }
-
-    * { box-sizing: border-box; }
-
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      background: linear-gradient(135deg, #667eea, #764ba2);
       min-height: 100vh;
       margin: 0;
-      padding: 28px;
-      color: var(--ink);
+      padding: 16px;
     }
-
     .container {
-      max-width: 920px;
+      max-width: 900px;
       margin: auto;
-      background: var(--card);
-      padding: 26px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
-      animation: fadeIn 0.35s ease;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
-
-    h1, h2 {
-      text-align: center;
-      margin: 0 0 14px;
-      letter-spacing: 0.2px;
-    }
-
-    .sub {
-      text-align:center;
-      color: var(--muted);
-      margin: 0 0 18px;
-    }
-
-    .topbar {
-      display:flex;
-      justify-content: space-between;
-      align-items:center;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: #f6f7ff;
-      border: 1px solid #e5e7eb;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      font-size: 13px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #eef0ff;
-      border: 1px solid #dfe3ff;
-      color: #2d37a3;
-      white-space: nowrap;
-    }
-
-    .status {
-      font-size: 13px;
-      color: var(--muted);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 360px;
-    }
-
+    h1, h2 { text-align: center; }
     button {
-      padding: 10px 16px;
-      margin: 6px 6px;
+      padding: 10px 14px;
+      margin: 6px;
       border: none;
-      border-radius: 10px;
-      background: var(--primary);
+      border-radius: 8px;
+      background: #667eea;
       color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button:hover { background: #5563d6; }
+    .choice {
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 14px 0;
+      background: #f9f9f9;
       font-size: 15px;
       cursor: pointer;
-      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-      box-shadow: 0 10px 18px rgba(102,126,234,0.18);
+      transition: background 0.2s, border 0.2s;
     }
-
-    button:hover {
-      background: var(--primaryHover);
-      transform: translateY(-1px);
-    }
-
-    button:disabled {
-      background: #a9b2ff;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-      opacity: 0.85;
-    }
-
-    .btn-secondary {
-      background: #111827;
-      box-shadow: 0 10px 18px rgba(0,0,0,0.18);
-    }
-
-    .btn-secondary:hover { background:#0b1220; }
-
-    .btn-small {
-      padding: 6px 10px;
-      font-size: 13px;
-      margin: 0;
-      box-shadow: none;
-      border-radius: 10px;
-    }
-
-    .btn-finish {
-      background: #9ca3af;
-      color: #111827;
-      box-shadow: none;
-    }
-
-    .btn-finish:hover {
-      background: #8b93a1;
-      transform: translateY(-1px);
-    }
-
-    .actions {
-      text-align: center;
-      margin-top: 22px;
-    }
-
-    .panel {
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 18px;
-      background: #ffffff;
-    }
-
-    #choices { margin-top: 14px; }
-
-    .choice {
-      padding: 14px 16px;
-      border: 2px dashed #c7c9ff;
-      border-radius: 12px;
-      margin: 18px 0;
-      background: #f9f9ff;
-      cursor: grab;
-      font-size: 16px;
-      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-      user-select: none;
-    }
-
-    .choice:hover { background: #f1f3ff; }
-
-    .choice.dragging {
-      cursor: grabbing;
-      transform: scale(1.03);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    .choice:hover { background: #eef0ff; }
+    .choice.selected {
+      border: 2px solid #667eea;
       background: #eef0ff;
-      opacity: 0.78;
-      border-color: #8b97ff;
     }
-
-    .choice.drag-over {
-      border-color: var(--primary);
-      background: #eef0ff;
-      box-shadow: inset 0 0 0 2px rgba(102,126,234,0.2);
-    }
-
-    .correct {
-      background: #e6fffa !important;
-      border-color: var(--ok) !important;
-      color: #065f5b;
-    }
-
-    .wrong {
-      background: #ffe6e6 !important;
-      border-color: var(--bad) !important;
-      color: #742a2a;
-    }
-
+    .correct { background: #e6fffa; border-color: #38b2ac; }
+    .wrong { background: #ffe6e6; border-color: #e53e3e; }
     .hidden { display: none; }
-
-    #wrongList > div {
-      background: #fafafa;
-      border-left: 6px solid var(--bad);
-      padding: 12px;
-      margin: 12px 0;
-      border-radius: 10px;
-    }
-
-    .hint {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .error {
-      margin: 14px 0 0;
-      padding: 12px;
-      border-radius: 12px;
-      background: #fff1f2;
-      border: 1px solid #fecdd3;
-      color: #9f1239;
-      font-size: 14px;
-      white-space: pre-line;
-    }
-
+    .actions { text-align: center; margin-top: 20px; }
     @media (max-width: 640px) {
-      body { padding: 14px; }
-      .container { padding: 18px; }
-      h1 { font-size: 20px; }
-      h2 { font-size: 18px; }
-      .choice { font-size: 15px; margin: 14px 0; }
-      .actions button { width: 100%; margin: 6px 0; }
-      .status { max-width: 100%; white-space: normal; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      .choice { font-size: 14px; padding: 16px; }
     }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- OPTIONAL LOCAL MODE SELECTOR (you can keep it even with separate index.html) -->
+  <!-- INDEX -->
   <div id="indexPage">
-    <h1>Part 2 – Sắp xếp thứ tự</h1>
-    <p class="sub">Chọn chế độ làm bài</p>
-
-    <div class="panel">
-      <div class="actions" style="margin-top:0">
-        <button id="btnStartRandom" onclick="startQuiz('random')" disabled>🔀 Random câu hỏi</button>
-        <button id="btnStartOrder" onclick="startQuiz('order')" disabled>➡️ Lần lượt</button>
-      </div>
-      <div class="actions" style="margin-top:6px">
-        <button class="btn-secondary btn-small" onclick="backToMainIndex()">⬅ Về index.html</button>
-      </div>
-      <div class="hint">(Mở bằng server local để load <b>questions.json</b>. Ví dụ: <code>python -m http.server 5500</code>)</div>
-      <div id="loadError" class="error hidden"></div>
+    <h1>🧠 Part 2 – Sắp xếp thứ tự</h1>
+    <p style="text-align:center">Chọn chế độ làm bài</p>
+    <div class="actions">
+      <button onclick="startQuiz('random')">🔀 Random</button>
+      <button onclick="startQuiz('order')">➡️ Lần lượt</button>
     </div>
   </div>
 
-  <!-- QUIZ PAGE -->
+  <!-- QUIZ -->
   <div id="quizPage" class="hidden">
-    <div class="topbar">
-      <div class="badge" id="progressBadge">Câu 1/1</div>
-      <div class="status" id="modeText">Mode: -</div>
-      <button class="btn-secondary btn-small" onclick="backToMainIndex()">⬅ Index</button>
-    </div>
-
-    <div class="panel">
-      <h2 id="questionTitle"></h2>
-      <div id="choices"></div>
-
-      <div class="actions">
-        <button id="btnCheck" onclick="checkAnswer()">✅ Check</button>
-        <button id="btnNext" class="btn-secondary" onclick="nextQuestion()">➡️ Next</button>
-        <button id="btnFinish" class="btn-finish btn-small" onclick="finishEarly()">⏹ Kết thúc</button>
-      </div>
-
-      <div class="hint">Kéo-thả các đáp án để sắp xếp đúng thứ tự.</div>
+    <h2 id="questionTitle"></h2>
+    <div id="choices"></div>
+    <div class="actions">
+      <button onclick="checkAnswer()">✅ Check</button>
+      <button onclick="nextQuestion()">➡️ Next</button>
+      <button onclick="finishEarly()" style="background:#111827">⏹ Kết thúc</button>
+      <button onclick="goHome()" style="background:#555">⬅ Index</button>
     </div>
   </div>
 
-  <!-- RESULT PAGE -->
+  <!-- RESULT -->
   <div id="resultPage" class="hidden">
     <h2>📊 Kết quả</h2>
-    <p id="summary" style="text-align:center;font-size:16px;margin: 6px 0 16px"></p>
+    <p id="summary" style="text-align:center"></p>
     <div id="wrongList"></div>
     <div class="actions">
-      <button class="btn-secondary" onclick="backToMainIndex()">🏠 Về index.html</button>
+      <button onclick="goHome()">🏠 Về index</button>
     </div>
   </div>
-
 </div>
 
 <script>
-  'use strict';
+let questions = [];
+let quizList = [];
+let index = 0;
+let results = [];
 
-  // =============================
-  // State
-  // =============================
-  let questions = [];
-  let mode = 'order';
-  let currentIndex = 0;
-  let quizList = [];
-  let userResults = []; // {question, isCorrect, correctOrder, userOrder}
-  let hasRecorded = false; // recorded this question result yet?
+const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+let selectedItem = null;
 
-  // =============================
-  // Helpers
-  // =============================
-  function shuffleCopy(arr) {
-    // Fisher-Yates
-    const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
+fetch('questions.json')
+  .then(r => r.json())
+  .then(d => questions = d);
 
-  function setVisible(id, visible) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.toggle('hidden', !visible);
-  }
+function shuffle(arr){ return arr.sort(() => Math.random() - 0.5); }
 
-  function setLoadError(message) {
-    const el = document.getElementById('loadError');
-    if (!el) return;
-    if (!message) {
-      el.classList.add('hidden');
-      el.innerText = '';
-      return;
-    }
-    el.classList.remove('hidden');
-    el.innerText = message;
-  }
+function startQuiz(mode){
+  quizList = [...questions];
+  if(mode === 'random') shuffle(quizList);
+  index = 0;
+  results = [];
+  document.getElementById('indexPage').classList.add('hidden');
+  document.getElementById('quizPage').classList.remove('hidden');
+  loadQuestion();
+}
 
-  function getCurrentUserOrder() {
-    return Array.from(document.querySelectorAll('.choice')).map(c => c.dataset.value);
-  }
+function loadQuestion(){
+  const q = quizList[index];
+  document.getElementById('questionTitle').innerText = `Câu ${index+1}: ${q.question}`;
+  const box = document.getElementById('choices');
+  box.innerHTML = '';
+  selectedItem = null;
 
-  function arraysEqual(a, b) {
-    if (a.length !== b.length) return false;
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] !== b[i]) return false;
-    }
-    return true;
-  }
+  shuffle([...q.options]).forEach(opt => {
+    const div = document.createElement('div');
+    div.className = 'choice';
+    div.innerText = opt;
 
-  // =============================
-  // Navigation
-  // =============================
-  function backToMainIndex() {
-    // Expected file name from your setup.
-    // If your main page has a different name, change it here.
-    window.location.href = 'index.html';
-  }
-
-  // =============================
-  // Load JSON
-  // =============================
-  async function loadQuestions() {
-    try {
-      setLoadError('');
-      const res = await fetch('questions.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-
-      if (!Array.isArray(data) || data.length === 0) {
-        throw new Error('questions.json phải là một mảng và không được rỗng.');
-      }
-
-      for (const q of data) {
-        if (!q || typeof q.question !== 'string' || !Array.isArray(q.options) || !Array.isArray(q.answer)) {
-          throw new Error('Một số câu hỏi thiếu field: question/options/answer.');
-        }
-        if (q.options.length !== 5 || q.answer.length !== 5) {
-          throw new Error('Mỗi câu phải có đúng 5 options và 5 answer.');
-        }
-      }
-
-      questions = data;
-      document.getElementById('btnStartRandom').disabled = false;
-      document.getElementById('btnStartOrder').disabled = false;
-    } catch (err) {
-      setLoadError(
-        `Không load được questions.json (${String(err.message || err)}).\n` +
-        `Bạn hãy chạy bằng server local (vd: python -m http.server 5500) rồi mở http://localhost:5500/`
-      );
-      document.getElementById('btnStartRandom').disabled = true;
-      document.getElementById('btnStartOrder').disabled = true;
-    }
-  }
-
-  // =============================
-  // Quiz flow
-  // =============================
-  function startQuiz(selectedMode) {
-    if (!questions || questions.length === 0) {
-      setLoadError('Chưa load được questions.json. Vui lòng chạy bằng server local.');
-      return;
-    }
-
-    mode = selectedMode;
-    quizList = [...questions];
-    if (mode === 'random') quizList = shuffleCopy(quizList);
-
-    currentIndex = 0;
-    userResults = [];
-
-    setVisible('indexPage', false);
-    setVisible('resultPage', false);
-    setVisible('quizPage', true);
-
-    const modeText = document.getElementById('modeText');
-    if (modeText) modeText.innerText = `Mode: ${mode === 'random' ? 'Random' : 'Lần lượt'}`;
-
-    loadQuestion();
-  }
-
-  function loadQuestion() {
-    const q = quizList[currentIndex];
-
-    document.getElementById('progressBadge').innerText = `Câu ${currentIndex + 1}/${quizList.length}`;
-    document.getElementById('questionTitle').innerText = q.question;
-
-    const choicesDiv = document.getElementById('choices');
-    choicesDiv.innerHTML = '';
-
-    // Randomize displayed order each time
-    const randomizedOptions = shuffleCopy(q.options);
-
-    for (const opt of randomizedOptions) {
-      const div = document.createElement('div');
-      div.className = 'choice';
-      div.draggable = true;
-      div.dataset.value = opt;
-      div.innerText = opt;
-      addDragAndDrop(div);
-      choicesDiv.appendChild(div);
-    }
-
-    // Reset per-question flags
-    hasRecorded = false;
-    document.getElementById('btnCheck').disabled = false;
-  }
-
-  // Drag & drop (swap text + dataset)
-  let dragSrc = null;
-  function addDragAndDrop(el) {
-    el.addEventListener('dragstart', () => {
-      dragSrc = el;
-      el.classList.add('dragging');
-    });
-
-    el.addEventListener('dragend', () => {
-      el.classList.remove('dragging');
-    });
-
-    el.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      el.classList.add('drag-over');
-    });
-
-    el.addEventListener('dragleave', () => {
-      el.classList.remove('drag-over');
-    });
-
-    el.addEventListener('drop', (e) => {
-      e.preventDefault();
-      el.classList.remove('drag-over');
-      if (!dragSrc || dragSrc === el) return;
-
-      const tmpText = dragSrc.innerText;
-      const tmpVal = dragSrc.dataset.value;
-
-      dragSrc.innerText = el.innerText;
-      dragSrc.dataset.value = el.dataset.value;
-
-      el.innerText = tmpText;
-      el.dataset.value = tmpVal;
-    });
-  }
-
-  function recordAnswerIfNeeded() {
-    if (hasRecorded) return;
-
-    const q = quizList[currentIndex];
-    const userOrder = getCurrentUserOrder();
-    const isCorrect = arraysEqual(userOrder, q.answer);
-
-    userResults.push({
-      question: q.question,
-      isCorrect,
-      correctOrder: [...q.answer],
-      userOrder
-    });
-
-    hasRecorded = true;
-  }
-
-  function checkAnswer() {
-    // Record result once
-    recordAnswerIfNeeded();
-
-    const q = quizList[currentIndex];
-    const choices = Array.from(document.querySelectorAll('.choice'));
-    const userOrder = getCurrentUserOrder();
-
-    // Paint per-position feedback
-    for (let i = 0; i < choices.length; i++) {
-      const itemVal = userOrder[i];
-      const correctVal = q.answer[i];
-
-      choices[i].classList.remove('correct', 'wrong');
-      choices[i].innerText = itemVal;
-
-      if (itemVal === correctVal) {
-        choices[i].classList.add('correct');
-      } else {
-        choices[i].classList.add('wrong');
-        choices[i].innerText = `${itemVal}  (Đúng: ${correctVal})`;
-      }
-    }
-
-    document.getElementById('btnCheck').disabled = true;
-  }
-
-  function nextQuestion() {
-    // Auto-record silently if user didn't check
-    recordAnswerIfNeeded();
-
-    currentIndex++;
-    if (currentIndex >= quizList.length) {
-      showResult();
+    if(isMobile){
+      div.addEventListener('click', () => tapSwap(div));
     } else {
-      loadQuestion();
+      div.draggable = true;
+      addDrag(div);
     }
-  }
-
-  function finishEarly() {
-    recordAnswerIfNeeded();
-    showResult();
-  }
-
-  function showResult() {
-    setVisible('quizPage', false);
-    setVisible('resultPage', true);
-
-    const correct = userResults.filter(r => r.isCorrect).length;
-    const wrong = userResults.length - correct;
-    document.getElementById('summary').innerText = `✅ Đúng: ${correct} | ❌ Sai: ${wrong}`;
-
-    const wrongList = document.getElementById('wrongList');
-    wrongList.innerHTML = '';
-
-    if (wrong === 0) {
-      wrongList.innerHTML = '<div style="border-left:6px solid var(--ok);background:#f0fdfa;padding:12px;border-radius:10px">🎉 Tuyệt vời! Bạn đã đúng tất cả câu.</div>';
-      return;
-    }
-
-    const header = document.createElement('h3');
-    header.innerText = '❌ Các câu làm sai';
-    wrongList.appendChild(header);
-
-    userResults.filter(r => !r.isCorrect).forEach(r => {
-      const div = document.createElement('div');
-      div.innerHTML = `
-        <b>${r.question}</b><br/>
-        <div style="margin-top:6px"><b>Đáp án đúng:</b> ${r.correctOrder.join(' → ')}</div>
-        <div style="margin-top:6px"><b>Bạn chọn:</b> ${r.userOrder.join(' → ')}</div>
-      `;
-      wrongList.appendChild(div);
-    });
-  }
-
-  // =============================
-  // Lightweight self-tests (console)
-  // =============================
-  function runSelfTests() {
-    try {
-      // Existing tests (kept)
-      console.assert(arraysEqual([1,2,3],[1,2,3]) === true, 'arraysEqual true case failed');
-      console.assert(arraysEqual([1,2,3],[1,2,4]) === false, 'arraysEqual false case failed');
-
-      const s = shuffleCopy([1,2,3,4,5]);
-      console.assert(s.length === 5, 'shuffleCopy length failed');
-      console.assert(new Set(s).size === 5, 'shuffleCopy uniqueness failed');
-
-      // New tests
-      const t = shuffleCopy(['a','b','c','d','e']);
-      console.assert(t.length === 5, 'shuffleCopy string length failed');
-      console.assert(t.sort().join('') === ['a','b','c','d','e'].join(''), 'shuffleCopy elements mismatch');
-
-      console.assert(arraysEqual([], []) === true, 'arraysEqual empty failed');
-      console.assert(arraysEqual(["x"], ["x"]) === true, 'arraysEqual string failed');
-
-      console.log('Self-tests: OK');
-    } catch (e) {
-      console.warn('Self-tests: FAILED', e);
-    }
-  }
-
-  // Startup
-  document.addEventListener('DOMContentLoaded', () => {
-    runSelfTests();
-    loadQuestions();
+    box.appendChild(div);
   });
+}
+
+function tapSwap(el){
+  if(!selectedItem){
+    selectedItem = el;
+    el.classList.add('selected');
+  } else if(selectedItem === el){
+    el.classList.remove('selected');
+    selectedItem = null;
+  } else {
+    const t = selectedItem.innerText;
+    selectedItem.innerText = el.innerText;
+    el.innerText = t;
+    selectedItem.classList.remove('selected');
+    selectedItem = null;
+  }
+}
+
+let dragSrc = null;
+function addDrag(el){
+  el.addEventListener('dragstart', () => dragSrc = el);
+  el.addEventListener('dragover', e => e.preventDefault());
+  el.addEventListener('drop', e => {
+    e.preventDefault();
+    if(dragSrc && dragSrc !== el){
+      const t = dragSrc.innerText;
+      dragSrc.innerText = el.innerText;
+      el.innerText = t;
+    }
+  });
+}
+
+function checkAnswer(){
+  const q = quizList[index];
+  const choices = [...document.querySelectorAll('.choice')];
+  const order = choices.map(c => c.innerText);
+  let ok = true;
+
+  choices.forEach((c,i)=>{
+    if(order[i] === q.answer[i]){
+      c.classList.add('correct');
+    } else {
+      c.classList.add('wrong');
+      c.innerText += ` (Đúng: ${q.answer[i]})`;
+      ok = false;
+    }
+  });
+  results.push({question:q.question, ok, answer:q.answer});
+}
+
+function nextQuestion(){
+  index++;
+  if(index >= quizList.length) showResult();
+  else loadQuestion();
+}
+
+function finishEarly(){ showResult(); }
+
+function showResult(){
+  document.getElementById('quizPage').classList.add('hidden');
+  document.getElementById('resultPage').classList.remove('hidden');
+  const correct = results.filter(r=>r.ok).length;
+  document.getElementById('summary').innerText = `Đúng: ${correct} / ${results.length}`;
+  const list = document.getElementById('wrongList');
+  list.innerHTML = '';
+  results.filter(r=>!r.ok).forEach(r=>{
+    const d = document.createElement('div');
+    d.innerHTML = `<b>${r.question}</b><br/>Đáp án đúng: ${r.answer.join(' → ')}`;
+    list.appendChild(d);
+  });
+}
+
+function goHome(){ location.reload(); }
 </script>
 </body>
 </html>
