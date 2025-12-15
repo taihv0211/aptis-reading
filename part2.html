@@ -32,7 +32,6 @@
       cursor: pointer;
     }
     button:hover { background: #5563d6; }
-
     .choice {
       padding: 14px;
       border: 1px solid #ddd;
@@ -40,48 +39,20 @@
       margin: 14px 0;
       background: #f9f9f9;
       font-size: 15px;
-      cursor: grab;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
     }
-
-    .mobile-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 12px 0;
+    .choice:hover { background: #eef0ff; }
+    .choice.selected {
+      border: 2px solid #667eea;
+      background: #eef0ff;
     }
-
-    select {
-      flex: 1;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-      background: #fff;
-    }
-
-    select.error {
-      border-color: #e53e3e;
-      background: #fff5f5;
-    }
-
-    .warning {
-      background: #fff8e1;
-      border: 1px solid #f6c343;
-      color: #7a5200;
-      padding: 10px;
-      border-radius: 8px;
-      margin: 12px 0;
-      display: none;
-      font-size: 14px;
-    }
-
     .correct { background: #e6fffa; border-color: #38b2ac; }
     .wrong { background: #ffe6e6; border-color: #e53e3e; }
     .hidden { display: none; }
     .actions { text-align: center; margin-top: 20px; }
-
     @media (max-width: 640px) {
-      .choice { display: none; }
+      .choice { font-size: 14px; padding: 16px; }
     }
   </style>
 </head>
@@ -101,16 +72,7 @@
   <!-- QUIZ -->
   <div id="quizPage" class="hidden">
     <h2 id="questionTitle"></h2>
-
-    <!-- Warning -->
-    <div id="warning" class="warning">⚠️ Bạn chưa chọn đầy đủ đáp án cho tất cả vị trí.</div>
-
-    <!-- Desktop -->
     <div id="choices"></div>
-
-    <!-- Mobile -->
-    <div id="mobileChoices"></div>
-
     <div class="actions">
       <button onclick="checkAnswer()">✅ Check</button>
       <button onclick="nextQuestion()">➡️ Next</button>
@@ -135,7 +97,9 @@ let questions = [];
 let quizList = [];
 let index = 0;
 let results = [];
-const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
+const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+let selectedItem = null;
 
 fetch('questions.json')
   .then(r => r.json())
@@ -156,53 +120,38 @@ function startQuiz(mode){
 function loadQuestion(){
   const q = quizList[index];
   document.getElementById('questionTitle').innerText = `Câu ${index+1}: ${q.question}`;
-  document.getElementById('choices').innerHTML = '';
-  document.getElementById('mobileChoices').innerHTML = '';
-  hideWarning();
+  const box = document.getElementById('choices');
+  box.innerHTML = '';
+  selectedItem = null;
 
-  const opts = shuffle([...q.options]);
+  shuffle([...q.options]).forEach(opt => {
+    const div = document.createElement('div');
+    div.className = 'choice';
+    div.innerText = opt;
 
-  if(isMobile){
-    q.answer.forEach((_, pos) => {
-      const row = document.createElement('div');
-      row.className = 'mobile-row';
-
-      const label = document.createElement('div');
-      label.innerText = `Vị trí ${pos+1}`;
-      label.style.width = '70px';
-
-      const select = document.createElement('select');
-
-      const placeholder = document.createElement('option');
-      placeholder.value = '';
-      placeholder.text = '---';
-      select.appendChild(placeholder);
-
-      opts.forEach(o => {
-        const op = document.createElement('option');
-        op.value = o;
-        op.text = o;
-        select.appendChild(op);
-      });
-
-      select.addEventListener('change', () => {
-        select.classList.remove('error');
-        hideWarning();
-      });
-
-      row.appendChild(label);
-      row.appendChild(select);
-      document.getElementById('mobileChoices').appendChild(row);
-    });
-  } else {
-    opts.forEach(opt => {
-      const div = document.createElement('div');
-      div.className = 'choice';
-      div.innerText = opt;
+    if(isMobile){
+      div.addEventListener('click', () => tapSwap(div));
+    } else {
       div.draggable = true;
       addDrag(div);
-      document.getElementById('choices').appendChild(div);
-    });
+    }
+    box.appendChild(div);
+  });
+}
+
+function tapSwap(el){
+  if(!selectedItem){
+    selectedItem = el;
+    el.classList.add('selected');
+  } else if(selectedItem === el){
+    el.classList.remove('selected');
+    selectedItem = null;
+  } else {
+    const t = selectedItem.innerText;
+    selectedItem.innerText = el.innerText;
+    el.innerText = t;
+    selectedItem.classList.remove('selected');
+    selectedItem = null;
   }
 }
 
@@ -222,53 +171,29 @@ function addDrag(el){
 
 function checkAnswer(){
   const q = quizList[index];
-  let userOrder = [];
+  const choices = [...document.querySelectorAll('.choice')];
+  const order = choices.map(c => c.innerText);
+  let ok = true;
 
-  if(isMobile){
-    const selects = [...document.querySelectorAll('#mobileChoices select')];
-    let hasEmpty = false;
-
-    userOrder = selects.map(s => {
-      if(!s.value){
-        hasEmpty = true;
-        s.classList.add('error');
-      }
-      return s.value;
-    });
-
-    if(hasEmpty){
-      showWarning();
-      return;
+  choices.forEach((c,i)=>{
+    if(order[i] === q.answer[i]){
+      c.classList.add('correct');
+    } else {
+      c.classList.add('wrong');
+      c.innerText += ` (Đúng: ${q.answer[i]})`;
+      ok = false;
     }
-  } else {
-    userOrder = [...document.querySelectorAll('.choice')].map(c => c.innerText);
-  }
-
-  hideWarning();
-  const ok = userOrder.every((v,i)=>v===q.answer[i]);
+  });
   results.push({question:q.question, ok, answer:q.answer});
 }
 
 function nextQuestion(){
-  if(isMobile){
-    const selects = [...document.querySelectorAll('#mobileChoices select')];
-    const hasEmpty = selects.some(s => !s.value);
-    if(hasEmpty){
-      selects.forEach(s => { if(!s.value) s.classList.add('error'); });
-      showWarning();
-      return;
-    }
-  }
-
   index++;
   if(index >= quizList.length) showResult();
   else loadQuestion();
 }
 
 function finishEarly(){ showResult(); }
-
-function showWarning(){ document.getElementById('warning').style.display = 'block'; }
-function hideWarning(){ document.getElementById('warning').style.display = 'none'; }
 
 function showResult(){
   document.getElementById('quizPage').classList.add('hidden');
