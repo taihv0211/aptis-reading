@@ -32,6 +32,9 @@
       cursor: pointer;
     }
     button:hover { background: #5563d6; }
+    button.study { background:#16a34a; }
+    button.study:hover { background:#15803d; }
+
     .choice {
       padding: 14px;
       border: 1px solid #ddd;
@@ -43,14 +46,14 @@
       transition: background 0.2s, border 0.2s;
     }
     .choice:hover { background: #eef0ff; }
-    .choice.selected {
-      border: 2px solid #667eea;
-      background: #eef0ff;
-    }
     .correct { background: #e6fffa; border-color: #38b2ac; }
     .wrong { background: #ffe6e6; border-color: #e53e3e; }
+    .study-mode { background:#f0fdf4; border-color:#22c55e; }
+
     .hidden { display: none; }
     .actions { text-align: center; margin-top: 20px; }
+    .hint { text-align:center; color:#065f46; font-size:14px; margin-bottom:8px; }
+
     @media (max-width: 640px) {
       .choice { font-size: 14px; padding: 16px; }
     }
@@ -62,21 +65,23 @@
   <!-- INDEX -->
   <div id="indexPage">
     <h1>🧠 Part 2 – Sắp xếp thứ tự</h1>
-    <p style="text-align:center">Chọn chế độ làm bài</p>
+    <p style="text-align:center">Chọn chế độ</p>
     <div class="actions">
       <button onclick="startQuiz('random')">🔀 Random</button>
       <button onclick="startQuiz('order')">➡️ Lần lượt</button>
+      <button class="study" onclick="startQuiz('study')">📘 Study</button>
     </div>
   </div>
 
   <!-- QUIZ -->
   <div id="quizPage" class="hidden">
     <h2 id="questionTitle"></h2>
+    <p id="studyHint" class="hint hidden">📘 Chế độ học: đáp án đúng đã được sắp sẵn</p>
     <div id="choices"></div>
     <div class="actions">
-      <button onclick="checkAnswer()">✅ Check</button>
+      <button id="btnCheck" onclick="checkAnswer()">✅ Check</button>
       <button onclick="nextQuestion()">➡️ Next</button>
-      <button onclick="finishEarly()" style="background:#111827">⏹ Kết thúc</button>
+      <button onclick="prevQuestion()" style="background:#111827">⏹ Trước</button>
       <button onclick="goHome()" style="background:#555">⬅ Index</button>
     </div>
   </div>
@@ -97,6 +102,7 @@ let questions = [];
 let quizList = [];
 let index = 0;
 let results = [];
+let mode = 'random';
 
 const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
 let selectedItem = null;
@@ -107,13 +113,16 @@ fetch('questions.json')
 
 function shuffle(arr){ return arr.sort(() => Math.random() - 0.5); }
 
-function startQuiz(mode){
+function startQuiz(m){
+  mode = m;
   quizList = [...questions];
   if(mode === 'random') shuffle(quizList);
   index = 0;
   results = [];
   document.getElementById('indexPage').classList.add('hidden');
   document.getElementById('quizPage').classList.remove('hidden');
+  document.getElementById('studyHint').classList.toggle('hidden', mode !== 'study');
+  document.getElementById('btnCheck').style.display = mode === 'study' ? 'none' : 'inline-block';
   loadQuestion();
 }
 
@@ -124,33 +133,51 @@ function loadQuestion(){
   box.innerHTML = '';
   selectedItem = null;
 
-  shuffle([...q.options]).forEach(opt => {
+  let opts = [];
+  if(mode === 'study'){
+    opts = shuffle([...q.answer]); // hiển thị random nhưng đúng thứ tự logic đã sẵn
+  } else {
+    opts = shuffle([...q.options]);
+  }
+
+  opts.forEach((opt, i) => {
     const div = document.createElement('div');
     div.className = 'choice';
     div.innerText = opt;
 
-    if(isMobile){
-      div.addEventListener('click', () => tapSwap(div));
+    if(mode === 'study'){
+      div.classList.add('study-mode');
+      div.style.cursor = 'default';
     } else {
-      div.draggable = true;
-      addDrag(div);
+      if(isMobile){
+        div.addEventListener('click', () => tapSwap(div));
+      } else {
+        div.draggable = true;
+        addDrag(div);
+      }
     }
     box.appendChild(div);
   });
 }
-
+function prevQuestion(){
+  if(index > 0){
+    index--;
+    loadQuestion();
+  }
+  updateNavButtons();
+}
 function tapSwap(el){
   if(!selectedItem){
     selectedItem = el;
-    el.classList.add('selected');
+    el.style.border = '2px solid #667eea';
   } else if(selectedItem === el){
-    el.classList.remove('selected');
+    el.style.border = '1px solid #ddd';
     selectedItem = null;
   } else {
     const t = selectedItem.innerText;
     selectedItem.innerText = el.innerText;
     el.innerText = t;
-    selectedItem.classList.remove('selected');
+    selectedItem.style.border = '1px solid #ddd';
     selectedItem = null;
   }
 }
@@ -170,6 +197,7 @@ function addDrag(el){
 }
 
 function checkAnswer(){
+  if(mode === 'study') return;
   const q = quizList[index];
   const choices = [...document.querySelectorAll('.choice')];
   const order = choices.map(c => c.innerText);
@@ -198,6 +226,11 @@ function finishEarly(){ showResult(); }
 function showResult(){
   document.getElementById('quizPage').classList.add('hidden');
   document.getElementById('resultPage').classList.remove('hidden');
+  if(mode === 'study'){
+    document.getElementById('summary').innerText = '📘 Chế độ học: không tính điểm';
+    document.getElementById('wrongList').innerHTML = '';
+    return;
+  }
   const correct = results.filter(r=>r.ok).length;
   document.getElementById('summary').innerText = `Đúng: ${correct} / ${results.length}`;
   const list = document.getElementById('wrongList');
