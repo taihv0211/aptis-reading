@@ -135,7 +135,7 @@ function loadQuestion(){
 
   let opts = [];
   if(mode === 'study'){
-    opts = shuffle([...q.answer]); // hiển thị random nhưng đúng thứ tự logic đã sẵn
+    opts = [...q.answer]; // hiển thị random nhưng đúng thứ tự logic đã sẵn
   } else {
     opts = shuffle([...q.options]);
   }
