@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Part 3 – Multiple Correct</title>
+<style>
+body{font-family:Segoe UI;background:#667eea;padding:16px}
+.container{max-width:900px;margin:auto;background:#fff;padding:20px;border-radius:14px}
+.option{border:1px solid #ddd;padding:12px;margin:10px 0;border-radius:8px;cursor:pointer}
+.option.selected{background:#eef0ff;border-color:#667eea}
+.option.correct{background:#e6fffa;border-color:#38b2ac}
+.option.wrong{background:#ffe6e6;border-color:#e53e3e}
+button{margin:6px;padding:10px 14px;border:0;border-radius:8px;background:#667eea;color:#fff}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div id="indexPage">
+  <h2>Part 3 – Chọn 2 đáp án đúng</h2>
+  <button onclick="start('random')">Random</button>
+  <button onclick="start('order')">Lần lượt</button>
+</div>
+
+<div id="quizPage" class="hidden">
+  <h3 id="q"></h3>
+  <div id="opts"></div>
+  <button onclick="check()">Check</button>
+  <button onclick="next()">Next</button>
+</div>
+
+<div id="resultPage" class="hidden">
+  <h3>Kết quả</h3>
+  <div id="sum"></div>
+  <div id="wrong"></div>
+  <button onclick="location.reload()">Index</button>
+</div>
+
+</div>
+
+<script>
+let data=[],list=[],i=0,selected=[],result=[];
+fetch('question_3.json').then(r=>r.json()).then(d=>data=d);
+
+function shuffle(a){return a.sort(()=>Math.random()-0.5)}
+
+function start(m){
+ list=[...data]; if(m==='random') shuffle(list);
+ i=0; result=[];
+ indexPage.classList.add('hidden');
+ quizPage.classList.remove('hidden');
+ load();
+}
+
+function load(){
+ selected=[];
+ const q=list[i];
+ document.getElementById('q').innerText=`${i+1}. ${q.question}`;
+ const box=document.getElementById('opts');
+ box.innerHTML='';
+ shuffle([...q.options]).forEach(o=>{
+  const d=document.createElement('div');
+  d.className='option'; d.innerText=o;
+  d.onclick=()=>{
+    if(selected.includes(o)){
+      selected=selected.filter(x=>x!==o);
+      d.classList.remove('selected');
+    }else{
+      selected.push(o);
+      d.classList.add('selected');
+    }
+  };
+  box.appendChild(d);
+ });
+}
+
+function check(){
+ const q=list[i];
+ if(selected.length!==2){alert('Phải chọn đúng 2 đáp án');return}
+ let ok=q.correct.every(x=>selected.includes(x)) &&
+        selected.every(x=>q.correct.includes(x));
+ document.querySelectorAll('.option').forEach(o=>{
+   if(q.correct.includes(o.innerText)) o.classList.add('correct');
+   else if(selected.includes(o.innerText)) o.classList.add('wrong');
+ });
+ result.push({q:q.question,ok,sel:selected,cor:q.correct});
+}
+
+function next(){
+ i++;
+ if(i>=list.length){
+  quizPage.classList.add('hidden');
+  resultPage.classList.remove('hidden');
+  const wrong=result.filter(r=>!r.ok);
+  sum.innerText=`Đúng ${result.length-wrong.length}/${result.length}`;
+  wrong.forEach(r=>{
+    wrong.innerHTML+=`<p><b>${r.q}</b><br>❌ ${r.sel.join(', ')}<br>✅ ${r.cor.join(', ')}</p>`;
+  });
+ } else load();
+}
+</script>
+</body>
+</html>

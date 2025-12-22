@@ -1,0 +1,392 @@
+[
+  {
+    "question": "A newly broadcasted TV series",
+    "correct": [
+      "It caught the audience’s attention from the start",
+      "It helps to reach new customers"
+    ],
+    "options": [
+      "It caught the audience’s attention from the start",
+      "It helps to reach new customers",
+      "It was cancelled after one episode",
+      "It targets only elderly viewers"
+    ]
+  },
+  {
+    "question": "Television series",
+    "correct": [
+      "It has the consistent quality throughout",
+      "Viewer habits influence the way that series are made"
+    ],
+    "options": [
+      "It has the consistent quality throughout",
+      "Viewer habits influence the way that series are made",
+      "They are always filmed abroad",
+      "They rarely attract online viewers"
+    ]
+  },
+  {
+    "question": "TV producer sharing his thoughts on the latest scripts for a new show",
+    "correct": [
+      "They seem unrealistic",
+      "It is negatively influencing script production"
+    ],
+    "options": [
+      "They seem unrealistic",
+      "It is negatively influencing script production",
+      "They are written very quickly",
+      "They are aimed at children"
+    ]
+  },
+  {
+    "question": "Professionalism",
+    "correct": [
+      "To maintain positive attitude",
+      "Our definition of it is changing"
+    ],
+    "options": [
+      "To maintain positive attitude",
+      "Our definition of it is changing",
+      "It is no longer required at work",
+      "It only applies to senior staff"
+    ]
+  },
+  {
+    "question": "Her experience in writing",
+    "correct": [
+      "Create dedicated periods for writing",
+      "Refuse to seek advice of others"
+    ],
+    "options": [
+      "Create dedicated periods for writing",
+      "Refuse to seek advice of others",
+      "Only write when inspired",
+      "Avoid feedback from editors"
+    ]
+  },
+  {
+    "question": "A musician’s career and latest albums",
+    "correct": [
+      "He will retire from singing professionally",
+      "He could have been more successful"
+    ],
+    "options": [
+      "He will retire from singing professionally",
+      "He could have been more successful",
+      "He has just started his career",
+      "His albums were never released"
+    ]
+  },
+  {
+    "question": "Working from home",
+    "correct": [
+      "Not good as expected",
+      "It depends on your situation and personality"
+    ],
+    "options": [
+      "Not good as expected",
+      "It depends on your situation and personality",
+      "It always improves productivity",
+      "It works equally well for everyone"
+    ]
+  },
+  {
+    "question": "The importance of sleep",
+    "correct": [
+      "Blocking noise and light is the key",
+      "The media overemphasize the subject"
+    ],
+    "options": [
+      "Blocking noise and light is the key",
+      "The media overemphasize the subject",
+      "Sleep is unnecessary for adults",
+      "Only children need sufficient sleep"
+    ]
+  },
+  {
+    "question": "A restaurant",
+    "correct": [
+      "The standard of service wasn’t good",
+      "They need to make the customers feel valued and welcome"
+    ],
+    "options": [
+      "The standard of service wasn’t good",
+      "They need to make the customers feel valued and welcome",
+      "The food was too expensive",
+      "It was located outside the city"
+    ]
+  },
+  {
+    "question": "Sport competition in school",
+    "correct": [
+      "Prepare students for a competitive work environment",
+      "Provides them with a balance in their lives"
+    ],
+    "options": [
+      "Prepare students for a competitive work environment",
+      "Provides them with a balance in their lives",
+      "Only benefits athletic students",
+      "Distracts students from academic learning"
+    ]
+  },
+  {
+    "question": "A Regional Development Planning",
+    "correct": [
+      "It doesn’t provide enough alternatives to driving",
+      "It is likely to meet resistance from local communities"
+    ],
+    "options": [
+      "It doesn’t provide enough alternatives to driving",
+      "It is likely to meet resistance from local communities",
+      "It focuses only on rural areas",
+      "It was approved without public consultation"
+    ]
+  },
+  {
+    "question": "A new series",
+    "correct": [
+      "The characters’ backgrounds are not explored",
+      "The new industry demands are negatively influencing script production"
+    ],
+    "options": [
+      "The characters’ backgrounds are not explored",
+      "The new industry demands are negatively influencing script production",
+      "The episodes are too long",
+      "The actors are inexperienced"
+    ]
+  },
+  {
+    "question": "Life after university",
+    "correct": [
+      "They are likely to be more flexible and open-minded",
+      "More competitive"
+    ],
+    "options": [
+      "They are likely to be more flexible and open-minded",
+      "More competitive",
+      "Less challenging than university life",
+      "Easier for everyone"
+    ]
+  },
+  {
+    "question": "A promotion campaign for a product",
+    "correct": [
+      "It is not targeting the correct market",
+      "It is too similar to many existing products"
+    ],
+    "options": [
+      "It is not targeting the correct market",
+      "It is too similar to many existing products",
+      "It has an unlimited budget",
+      "It relies only on social media"
+    ]
+  },
+  {
+    "question": "How to manage personal finances",
+    "correct": [
+      "Get advice from people that have experience",
+      "Monitor your spending for a weekly plan"
+    ],
+    "options": [
+      "Get advice from people that have experience",
+      "Monitor your spending for a weekly plan",
+      "Ignore small daily expenses",
+      "Spend without planning"
+    ]
+  },
+  {
+    "question": "Security camera",
+    "correct": [
+      "People are unnecessarily worried about them",
+      "People should feel reassured about their presence"
+    ],
+    "options": [
+      "People are unnecessarily worried about them",
+      "People should feel reassured about their presence",
+      "They always violate privacy",
+      "They are ineffective in public spaces"
+    ]
+  },
+  {
+    "question": "Two big writers of history",
+    "correct": [
+      "They have both been overlooked by academics",
+      "They both make references to each other in their work"
+    ],
+    "options": [
+      "They have both been overlooked by academics",
+      "They both make references to each other in their work",
+      "They never influenced literature",
+      "Their works are rarely studied today"
+    ]
+  },
+  {
+    "question": "Criticism of the new novel",
+    "correct": [
+      "The characters were interesting",
+      "It will establish the author’s popularity"
+    ],
+    "options": [
+      "The characters were interesting",
+      "It will establish the author’s popularity",
+      "The plot was copied",
+      "The novel lacks depth"
+    ]
+  },
+  {
+    "question": "A newly released novel",
+    "correct": [
+      "It is different from his earlier works",
+      "The dialogues seem unrealistic"
+    ],
+    "options": [
+      "It is different from his earlier works",
+      "The dialogues seem unrealistic",
+      "It was written in another language",
+      "It targets children only"
+    ]
+  },
+  {
+    "question": "A book about life of a scientist",
+    "correct": [
+      "It is exciting to read",
+      "It has been written for a general audience"
+    ],
+    "options": [
+      "It is exciting to read",
+      "It has been written for a general audience",
+      "It focuses only on equations",
+      "It is too technical for non-scientists"
+    ]
+  },
+  {
+    "question": "Research on happiness",
+    "correct": [
+      "It has not been accurately reported by the media",
+      "The research is unlikely to find a conclusive answer"
+    ],
+    "options": [
+      "It has not been accurately reported by the media",
+      "The research is unlikely to find a conclusive answer",
+      "It ignores emotional factors",
+      "It focuses only on wealthy people"
+    ]
+  },
+  {
+    "question": "Goal setting",
+    "correct": [
+      "It allows you to be more flexible",
+      "It can prevent you from making mistakes"
+    ],
+    "options": [
+      "It allows you to be more flexible",
+      "It can prevent you from making mistakes",
+      "It limits creativity",
+      "It is unnecessary for success"
+    ]
+  },
+  {
+    "question": "A new guidebook",
+    "correct": [
+      "It creates an adventure",
+      "It is suitable for particular generations"
+    ],
+    "options": [
+      "It creates an adventure",
+      "It is suitable for particular generations",
+      "It focuses only on luxury travel",
+      "It provides outdated information"
+    ]
+  },
+  {
+    "question": "A critic reviews a book",
+    "correct": [
+      "It uses simple language to describe complex ideas",
+      "It is similar to the author’s previous book"
+    ],
+    "options": [
+      "It uses simple language to describe complex ideas",
+      "It is similar to the author’s previous book",
+      "It lacks any criticism",
+      "It targets only children"
+    ]
+  },
+  {
+    "question": "A break from studying",
+    "correct": [
+      "He wasn’t ready to start higher education",
+      "To gain life experience and become independent"
+    ],
+    "options": [
+      "He wasn’t ready to start higher education",
+      "To gain life experience and become independent",
+      "To avoid learning completely",
+      "Because university was too expensive"
+    ]
+  },
+  {
+    "question": "Advice for travelers",
+    "correct": [
+      "Be well informed of the places you are going to visit",
+      "Knowing the people and cultures in different countries"
+    ],
+    "options": [
+      "Be well informed of the places you are going to visit",
+      "Knowing the people and cultures in different countries",
+      "Avoid talking to locals",
+      "Rely only on online reviews"
+    ]
+  },
+  {
+    "question": "A nutritionist’s career path",
+    "correct": [
+      "When she did a biology degree",
+      "After solving people’s problems in a helpline"
+    ],
+    "options": [
+      "When she did a biology degree",
+      "After solving people’s problems in a helpline",
+      "After opening a private clinic",
+      "After working in marketing"
+    ]
+  },
+  {
+    "question": "Advertising and sponsoring",
+    "correct": [
+      "It can help reach new customers",
+      "They can generate negative publicity for the sport"
+    ],
+    "options": [
+      "It can help reach new customers",
+      "They can generate negative publicity for the sport",
+      "They always improve reputation",
+      "They are never controversial"
+    ]
+  },
+  {
+    "question": "Making plans for success",
+    "correct": [
+      "They help you make decisions",
+      "It requires you to set yourself certain limits"
+    ],
+    "options": [
+      "They help you make decisions",
+      "It requires you to set yourself certain limits",
+      "They guarantee success",
+      "They remove all risks"
+    ]
+  },
+  {
+    "question": "The role of sports in students’ lives",
+    "correct": [
+      "They have a harmful effect",
+      "It helps balance students’ lives"
+    ],
+    "options": [
+      "They have a harmful effect",
+      "It helps balance students’ lives",
+      "It reduces academic focus",
+      "It benefits only professional athletes"
+    ]
+  }
+]
