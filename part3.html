@@ -61,16 +61,12 @@ function load(){
   const box=document.getElementById('opts');
   box.innerHTML='';
 
-  // 1. Giữ nguyên thứ tự đáp án đúng
   const correct = [...q.correct];
 
-  // 2. Lấy đáp án nhiễu
   const distractors = q.options.filter(o => !correct.includes(o));
 
-  // 3. Shuffle CHỈ đáp án nhiễu
   shuffle(distractors);
 
-  // 4. Trộn: đúng – nhiễu – đúng – nhiễu
   const mixed = [
     correct[0],
     distractors[0],
