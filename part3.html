@@ -55,42 +55,25 @@ function start(m){
 }
 
 function load(){
-  selected=[];
-  const q=list[i];
-  document.getElementById('q').innerText=`${i+1}. ${q.question}`;
-  const box=document.getElementById('opts');
-  box.innerHTML='';
-
-  const correct = [...q.correct];
-
-  const distractors = q.options.filter(o => !correct.includes(o));
-
-  shuffle(distractors);
-
-  const mixed = [
-    correct[0],
-    distractors[0],
-    correct[1],
-    distractors[1]
-  ];
-
-  mixed.forEach(o=>{
-    const d=document.createElement('div');
-    d.className='option';
-    d.innerText=o;
-    d.onclick=()=>{
-      if(selected.includes(o)){
-        selected=selected.filter(x=>x!==o);
-        d.classList.remove('selected');
-      }else{
-        selected.push(o);
-        d.classList.add('selected');
-      }
-    };
-    box.appendChild(d);
-  });
-}
-
+ selected=[];
+ const q=list[i];
+ document.getElementById('q').innerText=`${i+1}. ${q.question}`;
+ const box=document.getElementById('opts');
+ box.innerHTML='';
+ shuffle([...q.options]).forEach(o=>{
+  const d=document.createElement('div');
+  d.className='option'; d.innerText=o;
+  d.onclick=()=>{
+    if(selected.includes(o)){
+      selected=selected.filter(x=>x!==o);
+      d.classList.remove('selected');
+    }else{
+      selected.push(o);
+      d.classList.add('selected');
+    }
+  };
+  box.appendChild(d);
+ });}
 function check(){
  const q=list[i];
  if(selected.length!==2){alert('Phải chọn đúng 2 đáp án');return}
