@@ -60,7 +60,7 @@ function load(){
  document.getElementById('q').innerText=`${i+1}. ${q.question}`;
  const box=document.getElementById('opts');
  box.innerHTML='';
- shuffle([...q.options]).forEach(o=>{
+ [...q.options].forEach(o=>{
   const d=document.createElement('div');
   d.className='option'; d.innerText=o;
   d.onclick=()=>{
