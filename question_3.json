@@ -90,8 +90,9 @@
       "It works equally well for everyone"
     ]
   },
+
   {
-    "question": "The importance of sleep",
+    "question": "The importance of sleep – Version 1",
     "correct": [
       "Blocking noise and light is the key",
       "The media overemphasize the subject"
@@ -103,6 +104,20 @@
       "Only children need sufficient sleep"
     ]
   },
+  {
+    "question": "The importance of sleep – Version 2",
+    "correct": [
+      "People can’t always recognize the symptoms of tiredness",
+      "Blocking noise and light is the key"
+    ],
+    "options": [
+      "People can’t always recognize the symptoms of tiredness",
+      "Blocking noise and light is the key",
+      "Sleep is unnecessary for adults",
+      "Only children need sufficient sleep"
+    ]
+  },
+
   {
     "question": "A restaurant",
     "correct": [
@@ -181,8 +196,9 @@
       "It relies only on social media"
     ]
   },
+
   {
-    "question": "How to manage personal finances",
+    "question": "How to manage personal finances – Version 1",
     "correct": [
       "Get advice from people that have experience",
       "Monitor your spending for a weekly plan"
@@ -194,6 +210,20 @@
       "Spend without planning"
     ]
   },
+  {
+    "question": "How to manage personal finances – Version 2",
+    "correct": [
+      "Organizing their resources more effectively",
+      "Seek advice from someone who is experienced"
+    ],
+    "options": [
+      "Organizing their resources more effectively",
+      "Seek advice from someone who is experienced",
+      "Ignore small daily expenses",
+      "Spend without planning"
+    ]
+  },
+
   {
     "question": "Security camera",
     "correct": [
@@ -207,8 +237,9 @@
       "They are ineffective in public spaces"
     ]
   },
+
   {
-    "question": "Two big writers of history",
+    "question": "Two big writers of history – Version 1",
     "correct": [
       "They have both been overlooked by academics",
       "They both make references to each other in their work"
@@ -220,6 +251,47 @@
       "Their works are rarely studied today"
     ]
   },
+  {
+    "question": "Two big writers of history – Version 2",
+    "correct": [
+      "It is not always easy for the meanings to be identified",
+      "They have both been overlooked by academics"
+    ],
+    "options": [
+      "It is not always easy for the meanings to be identified",
+      "They have both been overlooked by academics",
+      "They never influenced literature",
+      "Their works are rarely studied today"
+    ]
+  },
+
+  {
+    "question": "Advertising and sponsoring – Version 1",
+    "correct": [
+      "It can help reach new customers",
+      "They can generate negative publicity for the sport"
+    ],
+    "options": [
+      "It can help reach new customers",
+      "They can generate negative publicity for the sport",
+      "They always improve reputation",
+      "They are never controversial"
+    ]
+  },
+  {
+    "question": "Advertising and sponsoring – Version 2",
+    "correct": [
+      "Series are damaged by overexposure",
+      "They can generate negative publicity for the sport"
+    ],
+    "options": [
+      "Series are damaged by overexposure",
+      "They can generate negative publicity for the sport",
+      "They always improve reputation",
+      "They are never controversial"
+    ]
+  },
+
   {
     "question": "Criticism of the new novel",
     "correct": [
@@ -234,7 +306,7 @@
     ]
   },
   {
-    "question": "A newly released novel",
+    "question": "A newly released novel – Version 1",
     "correct": [
       "It is different from his earlier works",
       "The dialogues seem unrealistic"
@@ -242,6 +314,19 @@
     "options": [
       "It is different from his earlier works",
       "The dialogues seem unrealistic",
+      "It was written in another language",
+      "It targets children only"
+    ]
+  },
+  {
+    "question": "A newly released novel – Version 2",
+    "correct": [
+      "He should listen to critics before writing his next work",
+      "The new industry demand is negatively influencing script production"
+    ],
+    "options": [
+      "He should listen to critics before writing his next work",
+      "The new industry demand is negatively influencing script production",
       "It was written in another language",
       "It targets children only"
     ]
@@ -348,19 +433,6 @@
       "After solving people’s problems in a helpline",
       "After opening a private clinic",
       "After working in marketing"
-    ]
-  },
-  {
-    "question": "Advertising and sponsoring",
-    "correct": [
-      "It can help reach new customers",
-      "They can generate negative publicity for the sport"
-    ],
-    "options": [
-      "It can help reach new customers",
-      "They can generate negative publicity for the sport",
-      "They always improve reputation",
-      "They are never controversial"
     ]
   },
   {
