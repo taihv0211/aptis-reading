@@ -55,25 +55,44 @@ function start(m){
 }
 
 function load(){
- selected=[];
- const q=list[i];
- document.getElementById('q').innerText=`${i+1}. ${q.question}`;
- const box=document.getElementById('opts');
- box.innerHTML='';
- shuffle([...q.options]).forEach(o=>{
-  const d=document.createElement('div');
-  d.className='option'; d.innerText=o;
-  d.onclick=()=>{
-    if(selected.includes(o)){
-      selected=selected.filter(x=>x!==o);
-      d.classList.remove('selected');
-    }else{
-      selected.push(o);
-      d.classList.add('selected');
-    }
-  };
-  box.appendChild(d);
- });
+  selected=[];
+  const q=list[i];
+  document.getElementById('q').innerText=`${i+1}. ${q.question}`;
+  const box=document.getElementById('opts');
+  box.innerHTML='';
+
+  // 1. Giữ nguyên thứ tự đáp án đúng
+  const correct = [...q.correct];
+
+  // 2. Lấy đáp án nhiễu
+  const distractors = q.options.filter(o => !correct.includes(o));
+
+  // 3. Shuffle CHỈ đáp án nhiễu
+  shuffle(distractors);
+
+  // 4. Trộn: đúng – nhiễu – đúng – nhiễu
+  const mixed = [
+    correct[0],
+    distractors[0],
+    correct[1],
+    distractors[1]
+  ];
+
+  mixed.forEach(o=>{
+    const d=document.createElement('div');
+    d.className='option';
+    d.innerText=o;
+    d.onclick=()=>{
+      if(selected.includes(o)){
+        selected=selected.filter(x=>x!==o);
+        d.classList.remove('selected');
+      }else{
+        selected.push(o);
+        d.classList.add('selected');
+      }
+    };
+    box.appendChild(d);
+  });
 }
 
 function check(){
